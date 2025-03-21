@@ -8,14 +8,13 @@ to understand and document the provided Verilog code, create the necessary PCF f
 
 ### CONTANT
 
-#### STEP 1 Understanding the Verilog Code
+### STEP 1 Understanding the Verilog Code
+<details>
+	
+1.This could be understood and complete with help of this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/top.v)
+   
+2.Review the module declaration 
 
-  1.  This could be understood and complete with help of this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/top.v)
-
-
-
-  <details><summary>2.Review the module declaration 
-</summary>
  
  * Inputs and Outputs: 
 
@@ -40,10 +39,8 @@ to understand and document the provided Verilog code, create the necessary PCF f
    	• always @(posedge int_osc) begin ... end: This block describes sequential logic that executes on the rising edge of the int_osc signal. 
 	
    	• frequency_counter_i <= frequency_counter_i + 1'b1: Inside the block, the frequency_counter_i register is incremented by 1 on each rising edge of int_osc. 1'b1 represents a 1-bit binary value of 1.
-  </details>  
 
-
-  <details><summary> 3. Analyze the internal components	</summary>
+3. Analyze the internal components
 
  * Internal Oscillator Configuration: 
 	
@@ -94,7 +91,46 @@ to understand and document the provided Verilog code, create the necessary PCF f
    	• defparam RGB_DRIVER.RGB2_CURRENT = "0b000001";: Sets the current for the blue LED.
     </details>
 
+     
+
 ### STEP 2  Creating and understanding the PCF File
 
+<details>
+
+ 1.view the PCF file from this  [link](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/task1-ledgreen/VSDSquadronFM.pcf). 
+
+	
+ 2.Understanding the pins from PCF file 
+
+* The pins -
+
+  - led_red -> Pin 39
+
+  - led_blue -> Pin 40
+
+  - led_green -> Pin 41
+
+  - hw_clk -> Pin 20
+
+  - testwire -> Pin 17
+
+	1. led_red 39: This line assigns the signal named "led_red" to pin number 39 on the FPGA. This likely connects an LED (light-emitting diode) to that pin, allowing the design to control the LED's state (on/off).
+   
+	2. led_blue 40: Similarly, this assigns the signal "led_blue" to pin 40, likely controlling another LED.
+ 
+	3. led_green 41: This assigns "led_green" to pin 41, controlling a third LED.
+   
+	4. hw_clk 20: This assigns the hardware clock signal "hw_clk" to pin 20. This pin will provide the timing reference for the FPGA's internal operations.
+   
+	5. testwire 17: This assigns a signal named "testwire" to pin 17, potentially for testing or debugging purposes.
+   </details> 
+
+
+
+
+
+
+
+   
 
 
