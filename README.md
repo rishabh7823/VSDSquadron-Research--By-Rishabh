@@ -2,13 +2,13 @@
 
 ## TASK 1 
 
-### Objective 
+### OBJECTIVE
 
 to understand and document the provided Verilog code, create the necessary PCF file, and integrate the design with the VSDSquadron FPGA Mini board using the provided [datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf). (install tools as explained in datasheet)
 
-### Content
+### CONTANT
 
-#### Step 1 Understanding the Verilog Code
+#### STEP 1 Understanding the Verilog Code
 
   1.  This could be understood and complete with help of this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/top.v)
 
@@ -40,8 +40,12 @@ to understand and document the provided Verilog code, create the necessary PCF f
    	• always @(posedge int_osc) begin ... end: This block describes sequential logic that executes on the rising edge of the int_osc signal. 
 	
    	• frequency_counter_i <= frequency_counter_i + 1'b1: Inside the block, the frequency_counter_i register is incremented by 1 on each rising edge of int_osc. 1'b1 represents a 1-bit binary value of 1.
-     
-  * Internal Oscillator Configuration: 
+  </details>  
+
+
+  <details><summary> 3. Analyze the internal components	</summary>
+
+ * Internal Oscillator Configuration: 
 	
    	• SB_HFOSC: This seems to be a module or macro representing a high-frequency oscillator. 
 	
@@ -87,5 +91,10 @@ to understand and document the provided Verilog code, create the necessary PCF f
 	
    	• defparam RGB_DRIVER.RGB1_CURRENT = "0b000001";: Sets the current for the green LED. 
 	
-   	• defparam RGB_DRIVER.RGB2_CURRENT = "0b000001";: Sets the current for the blue LED. 
-  </details>  
+   	• defparam RGB_DRIVER.RGB2_CURRENT = "0b000001";: Sets the current for the blue LED.
+    </details>
+
+### STEP 2  Creating and understanding the PCF File
+
+
+
