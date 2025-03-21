@@ -11,9 +11,9 @@ to understand and document the provided Verilog code, create the necessary PCF f
 ### STEP 1 Understanding the Verilog Code
 <details>
 	
-1.This could be understood and complete with help of this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/top.v)
+##### 1.This could be understood and complete with help of this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/top.v)
    
-2.Review the module declaration 
+##### 2.Review the module declaration 
 
  
  * Inputs and Outputs: 
@@ -40,7 +40,7 @@ to understand and document the provided Verilog code, create the necessary PCF f
 	
    	• frequency_counter_i <= frequency_counter_i + 1'b1: Inside the block, the frequency_counter_i register is incremented by 1 on each rising edge of int_osc. 1'b1 represents a 1-bit binary value of 1.
 
-3. Analyze the internal components
+##### 3. Analyze the internal components
 
  * Internal Oscillator Configuration: 
 	
@@ -97,10 +97,10 @@ to understand and document the provided Verilog code, create the necessary PCF f
 
 <details>
 
- 1.view the PCF file from this  [link](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/task1-ledgreen/VSDSquadronFM.pcf). 
+ ##### 1.view the PCF file from this  [link](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/task1-ledgreen/VSDSquadronFM.pcf). 
 
 	
- 2.Understanding the pins from PCF file 
+ #### 2.Understanding the pins from PCF file 
 
 * The pins -
 
@@ -123,7 +123,10 @@ to understand and document the provided Verilog code, create the necessary PCF f
 	4. hw_clk 20: This assigns the hardware clock signal "hw_clk" to pin 20. This pin will provide the timing reference for the FPGA's internal operations.
    
 	5. testwire 17: This assigns a signal named "testwire" to pin 17, potentially for testing or debugging purposes.
-   </details> 
+
+#### 3. cross-reference of the pins 
+
+* This mapping is crucial for correctly connecting and controlling external components or internal logic within the FPGA design. Each signal assignment defines the physical connection point on the FPGA board for that particular signal. For instance, the led_red signal is assigned to pin 39, meaning that the red LED will be controlled through this pin. Similarly, other signals like led_blue, led_green, hw_clk, and testwire are assigned to pins 40, 41, 20, and 17, respectively. These assignments are essential for proper hardware operation and must be consistent with the Verilog code and the board's hardware design. </details> 
 
 
 
