@@ -127,12 +127,6 @@ to understand and document the provided Verilog code, create the necessary PCF f
 #### 3. cross-reference of the pins 
 
 * This mapping is crucial for correctly connecting and controlling external components or internal logic within the FPGA design. Each signal assignment defines the physical connection point on the FPGA board for that particular signal. For instance, the led_red signal is assigned to pin 39, meaning that the red LED will be controlled through this pin. Similarly, other signals like led_blue, led_green, hw_clk, and testwire are assigned to pins 40, 41, 20, and 17, respectively. These assignments are essential for proper hardware operation and must be consistent with the Verilog code and the board's hardware design.
-
-
-#### 4. UNderstanding and implementing the verlog code 
-  
-  1. Follow the datasheet and install all the tools needed
-  2. Connnect the FM board to devics [computer,PC] acoording to the datasheet
  </details> 
 
 
