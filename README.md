@@ -6,4 +6,4 @@
 
 To understand the verilog code and implement it on the FM board
 
-[here]
+[here](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/edit/main/README.md)
