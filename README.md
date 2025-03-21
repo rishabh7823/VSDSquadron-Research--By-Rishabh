@@ -133,10 +133,7 @@ to understand and document the provided Verilog code, create the necessary PCF f
   
   1. Follow the datasheet and install all the tools needed
   2. Connnect the FM board to devics [computer,PC] acoording to the datasheet
-  3. we should put 3 commands
-     * Run ' make clean ' To clear the things
-     * Run ' make build ' To compile things
-     * Run ' sudo make sudo ' to program FPGA </details> 
+ </details> 
 
 
 
