@@ -17,13 +17,13 @@ to understand and document the provided Verilog code, create the necessary PCF f
   <details><summary>2.Review the module declaration 
 </summary>
  
-* Inputs and Outputs: 
+ * Inputs and Outputs: 
 
-   	• output wire led_red, led_blue, led_green: Declares three output signals, likely connected to LEDs. The wire keyword indicates they are simple connections, not memory elements. 
+   	  • output wire led_red, led_blue, led_green: Declares three output signals, likely connected to LEDs. The wire keyword indicates they are simple connections, not memory elements. 
 
-  	• input wire hu_clk: Declares an input signal, likely a clock signal from a hardware oscillator.
+  	  • input wire hu_clk: Declares an input signal, likely a clock signal from a hardware oscillator.
    
-  	• output wire testwire: Another output signal, its purpose is revealed later. 
+  	  • output wire testwire: Another output signal, its purpose is revealed later. 
 
   * Internal Signals:
     
