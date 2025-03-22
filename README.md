@@ -235,7 +235,7 @@ to understand and document the provided Verilog code, create the necessary PCF f
 
 <details>
 
-#### Copy all the following files in task1-ledblue,task1-ledgreen,task1-ledred and run the following codammands
+#### Create all the following files in task1-ledblue,task1-ledgreen,task1-ledred and run the following commands
 
 ####
 1.Reviewing the VSDSquadron FPGA Mini board [datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf) to understand its features and pinout.
