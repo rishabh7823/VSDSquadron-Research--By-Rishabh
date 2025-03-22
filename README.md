@@ -24,6 +24,82 @@
 	GPIO access, SPI flash, and integrated power regulation, it enables efficient design, testing, and
 	deployment, making it ideal for developers, hobbyists, and educators exploring FPGA applications.
 
+
+
+<details><summary>Installation and Settings
+</summary>
+
+
+
+
+Download VSDSquadron FPGA Mini (FM) Software on your laptop as given in datasheet
+
+ You should see a terminal window as shown in below
+
+
+![Screenshot 2025-03-22 232318](https://github.com/user-attachments/assets/f8b2a65d-a4a8-4f3c-a7bc-760b5166fd82)
+
+
+
+
+run the commands as given below 
+
+```bash
+
+cd
+cd VSDSquadron_FM
+cd blink_led
+```
+
+
+On the Virtual Machine, click on ”Devices → USB → FTDI Single RS232-HS [J900]” 
+
+To confirm if the board is connected to the USB, type the ‘lsusb‘ command in the terminal.
+You should see a line stating ”Future Technology Devices International,”
+
+
+Then follow these commands
+
+– Run the following command to clean up previous builds. Refer to Fig. 16:
+
+```bash
+make clean
+```
+
+Build the binaries for the FPGA board using below command.
+```bash
+make build
+```
+Flash the code to the external SRAM with the following command:
+
+```bash
+sudo make flash
+```
+Once the code is successfully flashed, you will see the RGB lights on the FPGA board
+blinking.
+
+
+
+
+https://github.com/user-attachments/assets/7390f54b-6ee4-48ed-be00-6438f2513c5a
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## TASK 1 
 
 ### OBJECTIVE
