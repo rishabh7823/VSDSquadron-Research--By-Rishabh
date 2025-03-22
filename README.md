@@ -1,5 +1,29 @@
 # VSDSquadron-Research--By-Rishabh
 
+# About VSDSquadron mini board
+
+![Screenshot 2025-03-22 145658](https://github.com/user-attachments/assets/f2f833da-6db8-4c9b-955e-eb50446aefdf)
+
+* FPGA:
+	– Powered by the Lattice UltraPlus ICE40UP5K FPGA
+	– Offers 5.3K LUTs, 1Mb SPRAM, 120Kb DPRAM, and 8 multipliers for versatile design
+	capabilities
+* Connectivity:
+	– Equipped with an FTDI FT232H USB to SPI device for seamless communication
+	– All FTDI pins are accessible through test points for easy debugging and customization
+* General Purpose I/O (GPIO):
+	– All 32 FPGA GPIOs brought out for easy prototyping and interfacing
+* Memory:
+	– Integrated 4MB SPI flash for data storage and configuration
+* LED Indicators:
+	– RGB LED included for status indication or user-defined functionality
+* Form Factor:
+	– Compact design with all pins accessible, perfect for fast prototyping and embedded applications
+	The VSDSquadron FPGA Mini (FM) board is an affordable, compact tool for prototyping and
+	embedded system development. With powerful ICE40UP5K FPGA, onboard programming, versatile
+	GPIO access, SPI flash, and integrated power regulation, it enables efficient design, testing, and
+	deployment, making it ideal for developers, hobbyists, and educators exploring FPGA applications.
+
 ## TASK 1 
 
 ### OBJECTIVE
