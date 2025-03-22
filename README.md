@@ -97,7 +97,8 @@ to understand and document the provided Verilog code, create the necessary PCF f
 
 <details>
 
- ##### 1.view the PCF file from this  [link](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/task1-ledgreen/VSDSquadronFM.pcf). 
+ ##### 
+ 1.view the PCF file from this [link](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/task1-ledgreen/VSDSquadronFM.pcf). 
 
 	
  #### 2.Understanding the pins from PCF file 
@@ -130,11 +131,58 @@ to understand and document the provided Verilog code, create the necessary PCF f
  </details> 
 
 
+### STEP 3: Integrating with the VSDSquadron FPGA Mini Board
+
+<details>
+
+#### Copy all the following files in task1-ledblue,task1-ledgreen,task1-ledred and run the following codammands
+
+####
+1.Reviewing the VSDSquadron FPGA Mini board [datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf) to understand its features and pinout.
+
+####  
+2. Use the datasheet to correlate the physical board connections with the [PCF](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/task1-ledblue/VSDSquadronFM.pcf) file and [Verilog](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/task1-ledblue/top.v) code.
+
+####
+3. Connecting the board to the computer as described in the datasheet using USB-C and ensuring FTDI connection
+
+4. Follow the provided [Makefile](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/task1-ledblue/Makefile) for building and flashing the Verilog code:
+
+```bash
+make clean
+make build
+sudo make flash
+``` 
+
+#### Observing the behavior of the RGB LED on the board to confirm successful programming - 
+
+##### Follow the steps
+
+1. ![Screenshot 2025-03-20 203212](https://github.com/user-attachments/assets/c73df39c-f278-4df8-9c36-31be7ccd5d8e)
+
+2. ![Screenshot 2025-03-19 220519](https://github.com/user-attachments/assets/d40ad02f-8908-49df-b942-094e06c5c144)
+
+3. ![Screenshot 2025-03-20 201130](https://github.com/user-attachments/assets/35bd9966-52b8-4f73-afd4-f1768f935e84)
+
+4. ![Screenshot 2025-03-20 202509](https://github.com/user-attachments/assets/01f40e78-c20f-4f10-9374-9f756e6deada)
+
+5. ![Screenshot 2025-03-20 203148](https://github.com/user-attachments/assets/0834e236-0557-4567-a8c7-886fc7f08a59)
+
+6. ![Screenshot 2025-03-22 141419](https://github.com/user-attachments/assets/8493294e-b118-47e4-b6f3-f57b221c94e8)
+
+7. ![Screenshot 2025-03-22 141451](https://github.com/user-attachments/assets/5bc43564-2682-463c-b4e4-cc69c901f5b0)
+
+8. ![Screenshot 2025-03-22 141704](https://github.com/user-attachments/assets/2eca16e7-4c38-4493-9de2-dfe38db33386)
+
+</details>
+
+
+
+
 
 
 
 
 
    
-
 
