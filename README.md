@@ -176,11 +176,14 @@ sudo make flash
 
 </details>
 
-### STEP 4: Difficulty faaced
+### STEP 4. Challenges faced
 
- was completely blank at the beginning after connecting the FPGA Mini. However, when it worked well, I felt confident that I could do it. But after writing the Verilog and PCF files, I again faced problems connecting the board. Fortunately, the WhatsApp group helped me solve the problem . 
+<details> 
+ I was completely blank at the beginning after connecting the FPGA Mini. However, when it worked well, I felt confident that I could do it. But after writing the Verilog and PCF files, I again faced problems connecting the board. Fortunately, the WhatsApp group helped me solve the problem . 
 
 google and AI helped me to understand verilog code and PCF file
+</details>
+
 
 
 
