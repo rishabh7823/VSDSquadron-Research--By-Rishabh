@@ -108,7 +108,7 @@ https://github.com/user-attachments/assets/7390f54b-6ee4-48ed-be00-6438f2513c5a
 
 ### OBJECTIVE
 
-to understand and document the provided Verilog code, create the necessary PCF file, and integrate the design with the VSDSquadron FPGA Mini board using the provided [datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf). (install tools as explained in datasheet)
+To understand and document the provided Verilog code, create the necessary PCF file, and integrate the design with the VSDSquadron FPGA Mini board using the provided [datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf). (install tools as explained in datasheet)
 
 ### CONTANT
 
@@ -290,9 +290,9 @@ sudo make flash
 ![Screenshot 2025-03-24 130736](https://github.com/user-attachments/assets/66bf2cd0-d881-4385-9d21-c7cb1a08c8d0)
 
 
-##### Challeges faced
+##### Challenges faced
  
- I was completely blank at the beginning after connecting the FPGA Mini. However, when it worked well, I felt confident that I could do it. But after writing the Verilog and PCF files, I again faced problems connecting the board. Fortunately, the WhatsApp group helped me solve the problem . 
+ I was completely blank at the beginning after connecting the FPGA Mini. However, when it worked well, I felt confident that I could do it. But after writing the Verilog and PCF files, I again faced problems connecting the board. Fortunately,Kunal sir and TA helped me solve the problem. 
 
 google and AI helped me to understand verilog code and PCF file
 </details>
