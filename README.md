@@ -80,6 +80,10 @@ blinking.
 
 
 
+![Screenshot 2025-03-14 183026](https://github.com/user-attachments/assets/b8fdef5e-e1b5-4ba9-9fdf-af6ce4daa6c5)
+
+
+
 
 https://github.com/user-attachments/assets/7390f54b-6ee4-48ed-be00-6438f2513c5a
 
@@ -276,9 +280,18 @@ sudo make flash
 
 </details>
 
-### STEP 4. Challenges faced
+### STEP 4. Pin mapping and Challenges faced
 
-<details> 
+<details>
+
+##### Pin mapping details from the PCF file
+
+
+![Screenshot 2025-03-24 130736](https://github.com/user-attachments/assets/66bf2cd0-d881-4385-9d21-c7cb1a08c8d0)
+
+
+##### Challeges faced
+ 
  I was completely blank at the beginning after connecting the FPGA Mini. However, when it worked well, I felt confident that I could do it. But after writing the Verilog and PCF files, I again faced problems connecting the board. Fortunately, the WhatsApp group helped me solve the problem . 
 
 google and AI helped me to understand verilog code and PCF file
