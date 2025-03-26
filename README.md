@@ -289,7 +289,7 @@ google and AI helped me to understand verilog code and PCF file
 
 
 
-## TASk 2
+## TASK 2
 
 ### Objective
 
@@ -302,8 +302,6 @@ Implement a UART loopback mechanism where transmitted data is immediately receiv
 ##### UART:
 
 The Universal Asynchronous Receiver/Transmitter (UART) is a fundamental serial communication protocol prevalent in embedded systems and digital hardware. Its asynchronous nature distinguishes it from synchronous protocols, relying on pre-configured baud rates for timing synchronization between communicating entities.UART is implemented in a wide array of devices, from microcontrollers and embedded systems to personal computers and various communication interfaces. It can be seen in this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/uart_loopback/top.v) it belonges to this [repository](https://github.com/thesourcerer8/VSDSquadron_FM/tree/main/uart_loopback)
-
-*UART 
 
 * Module Declaration:
 	
@@ -484,6 +482,11 @@ key components :
 ![Screenshot 2025-03-25 173121](https://github.com/user-attachments/assets/16ebbb6b-6370-4124-863a-bc2624ad3b69)
 
 Testing Results
+
+The final video 
+
+https://github.com/user-attachments/assets/460856a7-6207-4178-82d2-7e76299f90a9
+
 </details>
 
 
