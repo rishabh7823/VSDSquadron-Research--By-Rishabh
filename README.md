@@ -449,6 +449,8 @@ sudo make flash
 
 #### STEP 4 Verification
 
+<details>
+
 First we should download a app known as Docklight version 2.4
 
 Then you should ensure that the baud rate should be 9600 then the communication mode should be on send/recieve then the COMs would be desided by the device if the FGI board is connected.
@@ -461,8 +463,28 @@ Then double click on the small blue box below name in send sequences and enter a
 
 ![Screenshot 2025-03-25 173121](https://github.com/user-attachments/assets/bd14fa8e-3fa0-4ffc-b529-b34e52c6448f)
 
+</details>
 
 
+#### STEP5 Documentation 
+
+<details>
+
+![Screenshot 2025-03-26 173239](https://github.com/user-attachments/assets/be830e02-0e92-4c2b-a6d2-1babfafb6209)
+
+![Screenshot 2025-03-26 184547](https://github.com/user-attachments/assets/554b2659-69da-4dde-81c0-41a453137a6d)
+
+<summary> Circuit and Block diagram </summary>
+</details>
+
+<details>
+
+ Testing results
+
+![Screenshot 2025-03-25 173121](https://github.com/user-attachments/assets/16ebbb6b-6370-4124-863a-bc2624ad3b69)
+
+<summary> Testing Results </summary>
+</details>
 
 
 
