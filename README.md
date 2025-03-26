@@ -389,7 +389,7 @@ This line indicates the end of the module definition.
 </details>
 
 
-#### STEP 2
+#### STEP 2 Documenting
 
 <details>
 
@@ -413,6 +413,7 @@ key components :
 
 #### STEP 3 Implementation:
 
+First we need to create some files which are [Makefile](
 
 
 
