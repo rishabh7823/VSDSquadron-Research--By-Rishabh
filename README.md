@@ -295,7 +295,7 @@ google and AI helped me to understand verilog code and PCF file
 
 Implement a UART loopback mechanism where transmitted data is immediately received back, facilitating testing of UART functionality.
 
-#### STEP 1 analyzing the Existing Code
+#### STEP 1 Analyzing the Existing Code
 
 <details> 
 	
@@ -303,89 +303,85 @@ Implement a UART loopback mechanism where transmitted data is immediately receiv
 
 The Universal Asynchronous Receiver/Transmitter (UART) is a fundamental serial communication protocol prevalent in embedded systems and digital hardware. Its asynchronous nature distinguishes it from synchronous protocols, relying on pre-configured baud rates for timing synchronization between communicating entities.UART is implemented in a wide array of devices, from microcontrollers and embedded systems to personal computers and various communication interfaces. It can be seen in this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/uart_loopback/top.v) it belonges to this [repository](https://github.com/thesourcerer8/VSDSquadron_FM/tree/main/uart_loopback)
 
-<summary> UART </summary>
-</details>
+*UART 
 
-<details>
+* Module Declaration:
 	
+ 	*```module top (...)```: Defines a module named top with input and output signals.
 
-##### Module Declaration:
+	*```output wire led_red, // Red```: Declares an output wire named led_red for a red LED.
 
-module top (...): Defines a module named top with input and output signals.
+	*```output wire led_blue, // Blue```: Declares an output wire named led_blue for a blue LED.
 
-output wire led_red, // Red: Declares an output wire named led_red for a red LED.
+	*```output wire led_green, // Green```: Declares an output wire named led_green for a green LED.
 
-output wire led_blue, // Blue: Declares an output wire named led_blue for a blue LED.
+	*```output wire uarttx, // UART Transmission pin```: Declares an output wire for UART transmission.
 
-output wire led_green, // Green: Declares an output wire named led_green for a green LED.
+	*```input wire uartrx, // UART Transmission pin```: Declares an input wire for UART reception.
 
-output wire uarttx, // UART Transmission pin: Declares an output wire for UART transmission.
+	*```input wire clk```: Declares an input wire for a clock signal.
 
-input wire uartrx, // UART Transmission pin: Declares an input wire for UART reception.
+* Internal Signals:
 
-input wire clk: Declares an input wire for a clock signal.
+	*```wire int_osc```: Declares a wire named int_osc for the internal oscillator signal.
 
-##### Internal Signals:
+	*```reg [27:0] frequency_counter_i```: Declares a 28-bit register named frequency_counter_i to count clock cycles.
 
-wire int_osc: Declares a wire named int_osc for the internal oscillator signal.
+* Internal Oscillator:
 
-reg [27:0] frequency_counter_i: Declares a 28-bit register named frequency_counter_i to count clock cycles.
+	*```SB_HFOSC #(.CLKI_DIV("0b10")) U_SB_HFOSC (.CLKHFPU(2'b11), .CLKHFEN(1'b1), .CLKHF(int_osc));```: Instantiates a high-frequency oscillator (HFOSC) primitive
 
-##### Internal Oscillator:
+	*```CLKI_DIV("0b10")```: Sets the input clock divider.
 
-SB_HFOSC #(.CLKI_DIV("0b10")) U_SB_HFOSC (.CLKHFPU(2'b11), .CLKHFEN(1'b1), .CLKHF(int_osc));: Instantiates a high-frequency oscillator (HFOSC) primitive
+	*```CLKHFPU(2'b11)```: Enables the high-frequency output.
 
-CLKI_DIV("0b10"): Sets the input clock divider.
+	*```CLKHFEN(1'b1)```: Enables the HFOSC.
 
-CLKHFPU(2'b11): Enables the high-frequency output.
+	*```CLKHF(int_osc)```: Connects the HFOSC output to the int_osc signal.
 
-CLKHFEN(1'b1): Enables the HFOSC.
+* UART Assignment:
 
-.CLKHF(int_osc): Connects the HFOSC output to the int_osc signal.
+	*```assign uarttx = uartrx```: Assigns the value of uartrx to uarttx, likely for echoing received data.
 
-##### UART Assignment:
+* Counter
 
-assign uarttx = uartrx: Assigns the value of uartrx to uarttx, likely for echoing received data.
+	*This section defines a counter that increments on the rising edge of the ```int_osc ```signal.
 
-##### Counter
+	*f```requency_counter_1``` is incremented by 1 on each clock cycle.
 
-This section defines a counter that increments on the rising edge of the int_osc signal.
+	*The comment suggests this counter is related to generating a ```9600 Hz clock signal```, but the actual clock generation logic isn't shown here.
 
-frequency_counter_1 is incremented by 1 on each clock cycle.
+* Instantiate RGB primitive
 
-The comment suggests this counter is related to generating a 9600 Hz clock signal, but the actual clock generation logic isn't shown here.
+	*These lines serve as comments, indicating that the following code instantiates an ```RGB LED driver```.
 
-##### Instantiate RGB primitive
+* RGB Driver instantiation
 
-These lines serve as comments, indicating that the following code instantiates an RGB LED driver.
+	*```SB_RGBA_DRV RGB_DRIVER (...) ```instantiates a module (likely a pre-defined primitive in the FPGA library) to drive the RGB LED.
 
-##### RGB Driver instantiation
+	*```RGBLEDEN(1'b1)```: Enables the RGB LED.
 
-SB_RGBA_DRV RGB_DRIVER (...) instantiates a module (likely a pre-defined primitive in the FPGA library) to drive the RGB LED.
+	*```RGBBPMM(uartrx), AGBIPMM(uartrx), RGB2PMM(uartrx)```: These likely control the pulse-width modulation (PWM) for the blue, green, and red components of the RGB LED, respectively. uartrx suggests that these are controlled by a UART receive signal.
 
-RGBLEDEN(1'b1): Enables the RGB LED.
+	*```CURREN(1'b1)```: might set the current limit for the LED.
 
-RGBBPMM(uartrx), AGBIPMM(uartrx), RGB2PMM(uartrx): These likely control the pulse-width modulation (PWM) for the blue, green, and red components of the RGB LED, respectively. uartrx suggests that these are controlled by a UART receive signal.
+	*```RGB0(led_green), RGB1(led_blue), RGB2(led_red)```: Connect the RGB driver outputs to the actual LED signals.
 
-CURREN(1'b1): might set the current limit for the LED.
+* Parameter definitions
 
-RGB0(led_green), RGB1(led_blue), RGB2(led_red): Connect the RGB driver outputs to the actual LED signals.
+	*```defparam RGB_DRIVER.RGB0_CURRENT = "66000001"```;
 
-##### Parameter definitions
+	*```defparam RGB_DRIVER.RGB1_CURRENT = "86000001"```;
 
-defparam RGB_DRIVER.RGB0_CURRENT = "66000001";
+	*```defparam RGB_DRIVER.RGB2_CURRENT = "0b000001"```;
 
-defparam RGB_DRIVER.RGB1_CURRENT = "86000001";
+	*These lines define the current settings for the ```red, green, and blue LEDs```. The values are specified in binary format. These parameters likely control the brightness or intensity of the LEDs.
 
-defparam RGB_DRIVER.RGB2_CURRENT = "0b000001";
+* Endmodule
 
-These lines define the current settings for the red, green, and blue LEDs. The values are specified in binary format. These parameters likely control the brightness or intensity of the LEDs.
+	*This line indicates the end of the module definition. 
 
-##### Endmodule
 
-This line indicates the end of the module definition. 
-
-<summary> analyzing the verilog code </summary>
 </details>
 
 
@@ -393,20 +389,18 @@ This line indicates the end of the module definition.
 
 <details>
 
-![Screenshot 2025-03-26 184547](https://github.com/user-attachments/assets/9d55b122-5e7a-454b-a9cd-89c337079693)
-
- <summary> Block diagram </summary>
-</details>
-
-
-<details>
-
- ![Screenshot 2025-03-26 173239](https://github.com/user-attachments/assets/291c7cda-3898-490d-a7e3-4be80dac5903)
+![Screenshot 2025-03-26 173239](https://github.com/user-attachments/assets/291c7cda-3898-490d-a7e3-4be80dac5903)
 
 key components :
 
    - High frequency osillator [int_osi}
    - Frequency counter
+
+* Block diagram 
+
+ ![Screenshot 2025-03-26 184547](https://github.com/user-attachments/assets/9d55b122-5e7a-454b-a9cd-89c337079693)
+
+
 
  <summary> Circuit Diagramc</summary>
 </details>
@@ -415,7 +409,7 @@ key components :
 
 <details>
 
-First we need to create folder concluding some files which are [Makefile](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/Makefile) , [PCF](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/VSDSquadronFM.pcf) , [uart.trx](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/uart_trx.v) .The folder would be named as [uart_loopback](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/uart_loopback).
+First we need to create folder with files  [Makefile](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/Makefile) , [PCF](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/VSDSquadronFM.pcf) , [uart.trx](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/uart_trx.v) .The folder would be named as [uart_loopback](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/uart_loopback).
 
 ![Screenshot 2025-03-26 185253](https://github.com/user-attachments/assets/57cac362-59e9-42f9-9b83-2bcf046df79c)
 
@@ -470,20 +464,26 @@ Then double click on the small blue box below name in send sequences and enter a
 
 <details>
 
+* Circuit and Block diagram 
+
+
 ![Screenshot 2025-03-26 173239](https://github.com/user-attachments/assets/be830e02-0e92-4c2b-a6d2-1babfafb6209)
+
+
+key components :
+
+   - High frequency osillator [int_osi}
+   - Frequency counter
 
 ![Screenshot 2025-03-26 184547](https://github.com/user-attachments/assets/554b2659-69da-4dde-81c0-41a453137a6d)
 
-<summary> Circuit and Block diagram </summary>
-</details>
 
-<details>
 
- Testing results
+*Testing results
 
 ![Screenshot 2025-03-25 173121](https://github.com/user-attachments/assets/16ebbb6b-6370-4124-863a-bc2624ad3b69)
 
-<summary> Testing Results </summary>
+Testing Results
 </details>
 
 
