@@ -1,3 +1,4 @@
+
 # VSDSquadron-Research--By-Rishabh
 
 # About VSDSquadron mini board
@@ -90,17 +91,6 @@ https://github.com/user-attachments/assets/7390f54b-6ee4-48ed-be00-6438f2513c5a
 
 
 </details>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -398,6 +388,30 @@ This line indicates the end of the module definition.
 <summary> analyzing the verilog code </summary>
 </details>
 
+
+#### STEP 2
+
+<details>
+
+![Screenshot 2025-03-26 184547](https://github.com/user-attachments/assets/9d55b122-5e7a-454b-a9cd-89c337079693)
+
+ <summary> Block diagram </summary>
+</details>
+
+
+<details>
+
+ ![Screenshot 2025-03-26 173239](https://github.com/user-attachments/assets/291c7cda-3898-490d-a7e3-4be80dac5903)
+
+key components :
+
+   - High frequency osillator [int_osi}
+   - Frequency counter
+
+ <summary> Circuit Diagramc</summary>
+</details>
+
+#### STEP 3 Implementation:
 
 
 
