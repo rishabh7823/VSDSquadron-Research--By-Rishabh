@@ -451,6 +451,16 @@ sudo make flash
 
 First we should download a app known as Docklight version 2.4
 
+Then you should ensure that the baud rate should be 9600 then the communication mode should be on send/recieve then the COMs would be desided by the device if the FGI board is connected.
+
+Then double click on the small blue box below name in send sequences and enter a name then select a format and then type your message, click OK and then verify that this has entered in send sequences.
+
+![Screenshot 2025-03-26 201726](https://github.com/user-attachments/assets/87a67f93-19ff-4a29-b0b7-950f73190028)
+
+![Screenshot 2025-03-26 202849](https://github.com/user-attachments/assets/a176aeaa-b803-4705-bcd9-f35d315723e7)
+
+![Screenshot 2025-03-25 173121](https://github.com/user-attachments/assets/bd14fa8e-3fa0-4ffc-b529-b34e52c6448f)
+
 
 
 
