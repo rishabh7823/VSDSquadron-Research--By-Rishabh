@@ -301,14 +301,23 @@ google and AI helped me to understand verilog code and PCF file
 
 ## TASk 2
 
-### Objective: Implement a UART loopback mechanism where transmitted data is immediately received back, facilitating testing of UART functionality.
+### Objective
+
+Implement a UART loopback mechanism where transmitted data is immediately received back, facilitating testing of UART functionality.
 
 #### STEP 1 analyzing the Existing Code
 
-<details>
+<details> 
+	
 ##### UART:
 
-UART [Universal Asynchronous Receiver Transmitter] is a hardware communication protocol used for serial type communication between devices. Iyt consist of 2 main data's which are TX [Transmit] and RX [Receive]. It can be seen in this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/uart_loopback/top.v) it belonges to this [repository](https://github.com/thesourcerer8/VSDSquadron_FM/tree/main/uart_loopback)
+The Universal Asynchronous Receiver/Transmitter (UART) is a fundamental serial communication protocol prevalent in embedded systems and digital hardware. Its asynchronous nature distinguishes it from synchronous protocols, relying on pre-configured baud rates for timing synchronization between communicating entities.UART is implemented in a wide array of devices, from microcontrollers and embedded systems to personal computers and various communication interfaces. It can be seen in this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/uart_loopback/top.v) it belonges to this [repository](https://github.com/thesourcerer8/VSDSquadron_FM/tree/main/uart_loopback)
+
+<summary> UART </summary>
+</details>
+
+<details>
+	
 
 ##### Module Declaration:
 
@@ -386,7 +395,10 @@ These lines define the current settings for the red, green, and blue LEDs. The v
 
 This line indicates the end of the module definition. 
 
+<summary> analyzing the verilog code </summary>
 </details>
+
+
 
 
 
