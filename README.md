@@ -112,7 +112,7 @@ To understand and document the provided Verilog code, create the necessary PCF f
 
 ### CONTANT
 
-### STEP 1 Understanding the Verilog Code
+#### STEP 1 Understanding the Verilog Code
 <details>
 	
 ##### 1.This could be understood and complete with help of this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/top.v)
@@ -197,7 +197,7 @@ To understand and document the provided Verilog code, create the necessary PCF f
 
      
 
-### STEP 2  Creating and understanding the PCF File
+#### STEP 2  Creating and understanding the PCF File
 
 <details>
 
@@ -235,7 +235,7 @@ To understand and document the provided Verilog code, create the necessary PCF f
  </details> 
 
 
-### STEP 3: Integrating with the VSDSquadron FPGA Mini Board
+#### STEP 3: Integrating with the VSDSquadron FPGA Mini Board
 
 <details>
 
@@ -280,7 +280,7 @@ sudo make flash
 
 </details>
 
-### STEP 4. Pin mapping and Challenges faced
+#### STEP 4. Pin mapping and Challenges faced
 
 <details>
 
@@ -296,6 +296,102 @@ sudo make flash
 
 google and AI helped me to understand verilog code and PCF file
 </details>
+
+
+
+## TASk 2
+
+### Objective: Implement a UART loopback mechanism where transmitted data is immediately received back, facilitating testing of UART functionality.
+
+#### STEP 1 analyzing the Existing Code
+
+<details>
+##### UART:
+
+UART [Universal Asynchronous Receiver Transmitter] is a hardware communication protocol used for serial type communication between devices. Iyt consist of 2 main data's which are TX [Transmit] and RX [Receive]. It can be seen in this [link](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/uart_loopback/top.v) it belonges to this [repository](https://github.com/thesourcerer8/VSDSquadron_FM/tree/main/uart_loopback)
+
+##### Module Declaration:
+
+module top (...): Defines a module named top with input and output signals.
+
+output wire led_red, // Red: Declares an output wire named led_red for a red LED.
+
+output wire led_blue, // Blue: Declares an output wire named led_blue for a blue LED.
+
+output wire led_green, // Green: Declares an output wire named led_green for a green LED.
+
+output wire uarttx, // UART Transmission pin: Declares an output wire for UART transmission.
+
+input wire uartrx, // UART Transmission pin: Declares an input wire for UART reception.
+
+input wire clk: Declares an input wire for a clock signal.
+
+##### Internal Signals:
+
+wire int_osc: Declares a wire named int_osc for the internal oscillator signal.
+
+reg [27:0] frequency_counter_i: Declares a 28-bit register named frequency_counter_i to count clock cycles.
+
+##### Internal Oscillator:
+
+SB_HFOSC #(.CLKI_DIV("0b10")) U_SB_HFOSC (.CLKHFPU(2'b11), .CLKHFEN(1'b1), .CLKHF(int_osc));: Instantiates a high-frequency oscillator (HFOSC) primitive
+
+CLKI_DIV("0b10"): Sets the input clock divider.
+
+CLKHFPU(2'b11): Enables the high-frequency output.
+
+CLKHFEN(1'b1): Enables the HFOSC.
+
+.CLKHF(int_osc): Connects the HFOSC output to the int_osc signal.
+
+##### UART Assignment:
+
+assign uarttx = uartrx: Assigns the value of uartrx to uarttx, likely for echoing received data.
+
+##### Counter
+
+This section defines a counter that increments on the rising edge of the int_osc signal.
+
+frequency_counter_1 is incremented by 1 on each clock cycle.
+
+The comment suggests this counter is related to generating a 9600 Hz clock signal, but the actual clock generation logic isn't shown here.
+
+##### Instantiate RGB primitive
+
+These lines serve as comments, indicating that the following code instantiates an RGB LED driver.
+
+##### RGB Driver instantiation
+
+SB_RGBA_DRV RGB_DRIVER (...) instantiates a module (likely a pre-defined primitive in the FPGA library) to drive the RGB LED.
+
+RGBLEDEN(1'b1): Enables the RGB LED.
+
+RGBBPMM(uartrx), AGBIPMM(uartrx), RGB2PMM(uartrx): These likely control the pulse-width modulation (PWM) for the blue, green, and red components of the RGB LED, respectively. uartrx suggests that these are controlled by a UART receive signal.
+
+CURREN(1'b1): might set the current limit for the LED.
+
+RGB0(led_green), RGB1(led_blue), RGB2(led_red): Connect the RGB driver outputs to the actual LED signals.
+
+##### Parameter definitions
+
+defparam RGB_DRIVER.RGB0_CURRENT = "66000001";
+
+defparam RGB_DRIVER.RGB1_CURRENT = "86000001";
+
+defparam RGB_DRIVER.RGB2_CURRENT = "0b000001";
+
+These lines define the current settings for the red, green, and blue LEDs. The values are specified in binary format. These parameters likely control the brightness or intensity of the LEDs.
+
+##### Endmodule
+
+This line indicates the end of the module definition. 
+
+</details>
+
+
+
+
+
 
 
 
