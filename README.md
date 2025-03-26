@@ -413,7 +413,45 @@ key components :
 
 #### STEP 3 Implementation:
 
-First we need to create some files which are [Makefile](
+<details>
+
+First we need to create folder concluding some files which are [Makefile](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/Makefile) , [PCF](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/VSDSquadronFM.pcf) , [uart.trx](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/blob/main/uart_loopback/uart_trx.v) .The folder would be named as [uart_loopback](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/uart_loopback).
+
+![Screenshot 2025-03-26 185253](https://github.com/user-attachments/assets/57cac362-59e9-42f9-9b83-2bcf046df79c)
+
+![Screenshot 2025-03-26 185308](https://github.com/user-attachments/assets/125458f5-8a34-4774-9466-0df6686b9f26)
+
+We should use these commands -
+
+```
+cd
+
+cd VSDSquadron_FM
+
+cd uart_loopback
+
+lsusb
+
+make clean
+
+make build
+
+sudo make flash
+
+```
+
+![Screenshot 2025-03-25 144313](https://github.com/user-attachments/assets/9c70fe8e-a586-41ba-a24b-628e22150033)
+
+![Screenshot 2025-03-26 185230](https://github.com/user-attachments/assets/487d24a0-72bf-4402-9dc3-70c9fa67c6fe)
+
+</details>
+
+
+#### STEP 4 Verification
+
+First we should download a app known as Docklight version 2.4
+
+
 
 
 
