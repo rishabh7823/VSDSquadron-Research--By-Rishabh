@@ -384,54 +384,105 @@ The Universal Asynchronous Receiver/Transmitter (UART) is a fundamental serial c
 
 
   Module Declaration:
-module ```uart_txlni (...) ```defines the start of the module named uart_txlni and lists its input and output signals.
-Inputs:
-	```clk```: Clock signal for synchronous operation.
-	```txbyte```: 8-bit data to be transmitted.
-	```senddata```: Trigger signal to start transmission.
-Outputs:
-	```txalone```: Signal indicating transmission completion.
-	```tx```: Serial output data line.
-	```Parameters```:
-	```STATE_IDLE, STATE_STARTTX, STATE_TXIMS, STATE_TXOONE```: Define the states of a finite state machine (FSM) that controls the transmission process. These states likely correspond to:
-	```IDLE```: Waiting for data to transmit.
-	```STARTTX```: Sending the start bit.
-	```TXIMS```: Transmitting data bits.
-	```TXOONE```: Sending the stop bit.
-State Variables:
-state: Current state of the FSM.
-	```buf_tx```: Buffer to hold the data being transmitted.
-	```bits_sent```: Counter to track the number of bits transmitted.
-	```tabit```: Current bit being transmitted.
-	```txadone```: Flag indicating transmission is done.
-Wiring:
-	```assign tx = tabit```: Continuously assigns the value of tabit to the output signal tx.
-Always Block:
-	(The always block is incomplete in the image but is a crucial part of the design)
-	This block would contain the logic for the FSM, describing how the state transitions occur based on the input signals and current state. It would also handle loading data into buf_tx, shifting out bits, and managing the txalone signal.
+  
+	module ```uart_txlni (...) ```defines the start of the module named uart_txlni and lists its input and output signals.
 
-Clocked Process:
-	The always @(posedge clk) block indicates a process that executes on every rising edge of the clock signal clk. This is a common way to implement sequential logic in hardware.
-State Machine:
+
+* Inputs
+	
+ 	```clk```: Clock signal for synchronous operation.
+
+	```txbyte```: 8-bit data to be transmitted.
+
+	```senddata```: Trigger signal to start transmission.
+
+* Outputs:
+
+ 	```txalone```: Signal indicating transmission completion.
+
+	```tx```: Serial output data line.
+
+	```Parameters```:
+
+	```STATE_IDLE, STATE_STARTTX, STATE_TXIMS, STATE_TXOONE```: Define the states of a finite state machine (FSM) that controls the transmission process. These states likely correspond to:
+
+	```IDLE```: Waiting for data to transmit.
+
+	```STARTTX```: Sending the start bit.
+
+	```TXIMS```: Transmitting data bits.
+
+	```TXOONE```: Sending the stop bit.
+
+* State Variables:
+
+* state: Current state of the FSM.
+
+
+  	```buf_tx```: Buffer to hold the data being transmitted.
+
+ 	```bits_sent```: Counter to track the number of bits transmitted.
+
+	```tabit```: Current bit being transmitted.
+
+	```txadone```: Flag indicating transmission is done.
+
+* Wiring:
+
+	```assign tx = tabit```: Continuously assigns the value of tabit to the output signal tx.
+
+* Always Block:
+
+ 	(The always block is incomplete in the image but is a crucial part of the design)
+
+ 	This block would contain the logic for the FSM, describing how the state transitions occur based on the input signals and current state. It would also handle loading data into buf_tx, shifting out bits, and managing the txalone signal.
+
+* Clocked Process:
+
+ 	The always @(posedge clk) block indicates a process that executes on every rising edge of the clock signal clk. This is a common way to implement sequential logic in hardware.
+
+	State Machine:
+
 	The code implements a state machine to manage the different stages of the serial transmission. The states appear to be:
+
 	```STATE_BLE```: Initial state, potentially waiting for data to send.
+
 	```STATE_STARTTX```: Sending the start bit.
+
 	```STATE_TXING```: Transmitting the data bits.
+
 	```STATE_TXDONE```: Transmission complete.
+
 	```STATE_IDLE```: Idle state after transmission.
-Sending Data:
-	The code checks if senddata is high and the current state is ```STATE_BLE```. If true, it initiates the transmission by transitioning to ```STATE_STARTTX```, loading the data to be transmitted ```(tmytej)``` into a ```buffer (buf_tx)```, and setting ```txalone``` to low.
+
+* Sending Data:
+
+ 	The code checks if senddata is high and the current state is ```STATE_BLE```. If true, it initiates the transmission by transitioning to ```STATE_STARTTX```, loading the data to be transmitted ```(tmytej)``` into a ```buffer (buf_tx)```, and setting
+
+  	```txalone``` to low.
+
 	In the ```STATE_STARTTX```, it sets txbit to low to send the ```start bit``` and transitions to ```STATE_TXING```.
+
 	In ```STATE_TXING```, it transmits the data bits from ```buf_tx``` one by one on each clock cycle until all 8 bits are sent.
+
 	After sending all bits, it transitions to ```STATE_TXDONE```.
+
 	In ```STATE_TXDONE```, it sets ```txalone``` to high and returns to ```STATE_IDLE```.
-Variables:
-	senddata: Signal to initiate data transmission.
-	state: Current state of the state machine.
+
+* Variables:
+
+ 	senddata: Signal to initiate data transmission.
+
+ 	state: Current state of the state machine.
+
 	```buf_tx```: Buffer to hold the data being transmitted.
+
 	```txalone```: Signal indicating if the transmitter is idle or busy.
+
 	```txbit```: The current bit being transmitted.
+
 	```bits_sent```: Counter for the number of bits sent.
+
 	```tmytej```: Data to be transmitted.
 
 </details>
