@@ -673,8 +673,93 @@ Developing a UART transmitter module capable of sending serial data from the FPG
 
 </details>
 
+#### STEP2 Designing Documentation
 
+<details>
 
+ block diagram detailing the UART transmitter module.
+
+ ![Screenshot 2025-03-31 122928](https://github.com/user-attachments/assets/eff6a7a2-3876-42d0-9e91-4460f7d8f670)
+
+ circuit diagram illustrating the FPGA's UART TX pin connection to the receiving device.
+
+![Screenshot 2025-03-31 121139](https://github.com/user-attachments/assets/03f4d68f-b6e7-44e5-aaee-51879f9b919a)
+
+</details>
+
+#### STEP3 Implementation
+
+<details>
+
+ Hardware setup
+
+ * Refer to the [Datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf) for board details.
+ * Ensure that you have connected the USB
+ * Then make the folder named as uart_tx
+ * Then put these commands
+
+   ``` cd ```
+   
+   ``` cd VSDSquadron_FM ```
+   
+   ``` cd uart_tx ```
+   
+   ``` lsusb ```
+   
+   ``` make clean ```
+   
+   ``` make build ```
+   
+   ``` sudo make flash ```
+
+* Like this
+
+![Screenshot 2025-03-29 140217](https://github.com/user-attachments/assets/9dc5b566-fbdf-4377-bfba-171232818a21)
+
+![Screenshot 2025-03-29 140233](https://github.com/user-attachments/assets/08a6cfb3-b483-48d4-b64d-61371b87b563)
+
+![Screenshot 2025-03-29 140246](https://github.com/user-attachments/assets/a9db10c5-4776-48bb-a077-12f4f11e6fe9)
+
+</details>
+
+#### STEP4 Testing and Verification
+
+<details>
+
+ * Instal PUtty
+ * make sure you know your comunicayion number [in my case it was COM3]
+ * Then check if the `D's are showing up
+ * Like this :-
+
+   ![Screenshot 2025-03-29 141226](https://github.com/user-attachments/assets/4f9300e5-149c-4bca-a221-a5ddeb473c56)
+
+  https://github.com/user-attachments/assets/c91b4c03-955f-43ac-bed0-3ac1a3e8861b
+
+  https://github.com/user-attachments/assets/c3d32de6-4399-4993-8841-e48542625c2f
+
+  ![Screenshot 2025-03-31 130233](https://github.com/user-attachments/assets/ab74fef8-5442-4ff3-bddc-0b790a179b0a)
+
+  ![Screenshot 2025-03-31 130242](https://github.com/user-attachments/assets/ddd43daa-6f06-4867-a479-0f368a3bfa9c)
+
+  ![Screenshot 2025-03-31 130252](https://github.com/user-attachments/assets/c89a30a2-7594-468c-903b-feff03621a3c)
+
+  ![Screenshot 2025-03-31 130259](https://github.com/user-attachments/assets/063dbf65-97c1-478a-80f3-09d20bcc1ab1)
+
+</details>
+
+#### STEP5 Documenting
+
+<details>
+
+ Block diagram -
+
+ ![Screenshot 2025-03-31 121139](https://github.com/user-attachments/assets/11a23414-4aec-4ece-a985-bb43db4fb690)
+
+ Circuit diagram -
+
+ ![Screenshot 2025-03-31 122928](https://github.com/user-attachments/assets/cd73bd81-1f40-48fd-b7ae-997a37003217)
+
+</details>
 
 
 
