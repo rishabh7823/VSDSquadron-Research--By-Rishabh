@@ -820,8 +820,8 @@ If still IDLE, it ensures txbit stays HIGH (UART idle state).
 
 <details>
 
- * Instal PUtty
- * make sure you know your comunicayion number [in my case it was COM3]
+ * Instal PUtty by this [link](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+ * make sure you know your communication number [in my case it was COM3]
  * Then check if the `D's are showing up
  * Like this :-
 
