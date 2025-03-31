@@ -603,6 +603,8 @@ Developing a UART transmitter module capable of sending serial data from the FPG
 
 <details>
 
+UART_TRX.V
+
  1. File Inclusion
 
   * This includes the Verilog file ```uart_trx.v```, which likely contains the UART transmission module ```uart_tx_8n1```.
@@ -670,6 +672,98 @@ Developing a UART transmitter module capable of sending serial data from the FPG
 9. LED Brightness Configuration
 
    * Sets the current levels for RGB LEDs to a low value ```0b000001```.
+
+TOP.V
+
+1. Module Overview
+
+This module has:
+
+Inputs:
+
+   ```clk```: Clock signal.
+
+   ```txbyte```: 8-bit data to be transmitted.
+
+   ```senddata```: Signal to initiate transmission.
+
+Outputs:
+
+   ```txdone```: Indicates transmission completion.
+
+   ```tx```: UART output signal (serial data line).
+
+2. Parameter Definitions
+
+   These define different states of the UART transmitter:
+
+   ```STATE_IDLE``` (0) → Waiting for data.
+
+   ```STATE_STARTTX``` (1) → Sending start bit (low signal).
+
+   ```STATE_TXING``` (2) → Sending 8 data bits.
+
+   ```STATE_TXDONE``` (3) → Sending stop bit and marking transmission as complete.
+
+3. State Variables
+
+   ```state```: Stores the current state of the UART module.
+
+   ```buf_tx```: Holds the byte being transmitted.
+
+   ```bits_sent```: Counts how many bits have been sent.
+
+   ```txbit```: Holds the TX pin state (idle is high).
+
+   ```txdone```: Set to 1 when transmission is finished.
+
+4.  TX Wire Connection
+
+  The output signal ```tx``` is directly assigned to ```txbit```, which is modified in the always block.
+
+5.  Always Block (Sequential Logic)
+
+   The UART transmission operates on the rising edge of the clock.
+
+6. Start Condition
+
+   If ```senddata``` is 1 and the module is IDLE, it:
+
+   Moves to ```STATE_STARTTX```.
+
+   Loads ```txbyte``` into ```buf_tx```.
+
+Clears txdone.
+
+If still IDLE, it ensures txbit stays HIGH (UART idle state).
+
+7. Start Bit Transmission
+
+   The start bit (0) is sent to the ```tx``` line.
+
+   The module moves to ```STATE_TXING```.
+
+8. Sending Data Bits
+
+   The LSB (Least Significant Bit) is sent first.
+
+   The buffer ```buf_tx``` is shifted right so the next bit moves to ```buf_tx[0]```.
+
+   ```bits_sent``` is incremented.
+
+9. Stop Bit and Transmission Completion
+
+    After 8 data bits, a stop bit (HIGH 1) is sent.
+
+    The bit counter resets.
+
+    the module moves to ```STATE_TXDONE```.
+
+10. Mark Transmission as Done
+
+    The ```txdone``` flag is set to 1, indicating that the transmission has finished.
+
+    The module returns to IDLE mode.
 
 </details>
 
