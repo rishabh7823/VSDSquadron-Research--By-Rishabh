@@ -1006,7 +1006,17 @@ UART_TRX,V
  
 </details>
 
+#### STEP2 Design Documentation:
 
+Block diagram and circuit diagram 
+
+<details>
+
+ ![Screenshot 2025-04-02 210644](https://github.com/user-attachments/assets/9a50fe1b-bcd3-4471-9b42-acb1537ef3dd)
+
+
+
+</details>
 
 
 
