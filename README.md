@@ -856,7 +856,155 @@ If still IDLE, it ensures txbit stays HIGH (UART idle state).
 </details>
 
 
+## Task 4
 
+### Objective: Implement a UART transmitter that sends data based on sensor inputs, enabling the FPGA to communicate real-time sensor data to an external device.
+
+#### STEP1 analyzing existing code
+
+<details>
+
+TOP.V
+
+1. File Inclusion
+
+   This includes an external Verilog file ```uart_trx.v```, which likely contains the UART transmitter ```(uart_tx_8n1)``` and possibly a UART receiver.
+
+2. Module Declaration
+
+   LEDs (led_red, led_blue, led_green) are used to indicate status based on received UART data.
+
+   ```uarttx``` (UART Transmit Pin) sends data to an external device.
+
+   ```uartrx```(UART Receive Pin) receives data, used to control LEDs.
+
+   ```hw_clk``` (Hardware Clock Input) is the system clock.
+
+3. Internal Signals
+
+   ```int_osc```: Internal oscillator signal.
+
+   ```frequency_counter_i```: A 28-bit counter used for timing operations.
+
+4. Generating 9600 Hz Clock from 12 MHz
+
+   ```clk_9600```: A clock signal for UART transmission.
+
+   ```cntr_9600```: A counter used to divide the 12 MHz system clock.
+
+   ```period_9600``` = 625: Defines how often the clock toggles to achieve 9600 baud rate.
+
+5. UART Transmitter
+
+   Instantiates the ```uart_tx_8n1``` module, which transmits ASCII character "D".
+
+   ```senddata```(frequency_counter_i[24]) triggers data transmission periodically.
+
+6. Internal Oscillator
+
+   ```SB_HFOSC``` is an FPGA primitive used for generating an internal high-frequency oscillator clock.
+
+   ```CLKHF_DIV``` ("0b10") sets the frequency division.
+
+7. Counter for Clock Division
+
+   Increments ```frequency_counter_i``` on every clock pulse.
+
+   Generates a 9600 Hz clock by toggling ```clk_9600``` every 625 cycles.
+
+8. RGB LED Control (Using UART RX Data)
+
+   RGB LEDs are controlled directly by the received UART signal ```(uartrx)```.
+
+   This means when data is received via UART, the LEDs will turn on/off accordingly.
+
+   ```SB_RGBA_DRV```is an FPGA primitive for driving RGB LEDs.
+
+9. LED Current Configuration
+
+    Sets the current drive strength for each LED.
+
+UART_TRX,V
+
+1. Module I/O
+
+   ```clk``` → Input clock for timing UART transmission.
+
+   ```txbyte``` → The 8-bit data to be transmitted.
+
+   ```senddata``` → Signal to start transmission.
+
+   ```txdone``` → Output signal indicating the transmission is complete.
+
+   ```tx ```→ UART TX output (connected to the receiving device's RX pin).
+
+2. UART 8N1 Transmission Format
+
+   Start Bit (0): Signals the beginning of data transmission.
+
+   8 Data Bits: Actual data being sent (LSB first).
+
+   Stop Bit (1): Marks the end of transmission.
+
+3. Parameters: UART State Machine
+
+   ```STATE_IDLE``` (0) → UART is idle, waiting for data.
+
+   ```STATE_STARTTX``` (1) → Sends the start bit (0).
+
+   ```STATE_TXING``` (2) → Sends 8 data bits (LSB first).
+
+   ```STATE_TXDONE``` (3) → Sends stop bit (1), then returns to idle.
+
+4. Registers (State Variables)
+
+   ```state``` → Holds the current state of the UART FSM.
+
+   ```buf_tx``` → Stores txbyte temporarily while transmitting.
+
+   ```bits_sent``` → Tracks the number of bits sent.
+
+   ```txbit``` → Stores the TX line value (default = 1, idle).
+
+   `txdon`e → Indicates transmission completion.
+
+5. TX Line Output
+
+   Assigns the `txbit` value to tx, ensuring it drives the TX pin.
+
+6. IDLE STATE: Waiting for Data
+
+   If senddata == 1, the module loads txbyte into `buf_tx` and moves to `STATE_STARTTX`.
+
+   Otherwise, TX line remains high (1) (idle state).
+
+7. `START BIT`: Send Low (0)
+
+   The TX line is pulled low (0) to indicate the start of transmission.
+
+   Moves to `STATE_TXING` to begin sending data bits.
+
+8. TRANSMIT 8 DATA BITS
+
+   TX line is set to the LSB `(buf_tx[0])`.
+
+   Right shift (>>1) the buffer to get the next bit.
+
+   Increment `bits_sent` until all 8 bits are transmitted.
+
+9. STOP BIT: Send High (1)
+
+    Sends stop bit (1) to indicate end of transmission.
+
+    Resets `bits_sent` to 0 and moves to `STATE_TXDONE`.
+
+10. TX DONE & RETURN TO IDLE
+
+    `txdone` is set to 1 to indicate transmission completion.
+
+    Returns to `STATE_IDLE` to wait for new data.
+ 
+</details>
 
 
 
