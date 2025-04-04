@@ -858,7 +858,9 @@ If still IDLE, it ensures txbit stays HIGH (UART idle state).
 
 ## Task 4
 
-### Objective: Implement a UART transmitter that sends data based on sensor inputs, enabling the FPGA to communicate real-time sensor data to an external device.
+### Objective: 
+
+Implement a UART transmitter that sends data based on sensor inputs, enabling the FPGA to communicate real-time sensor data to an external device.
 
 #### STEP1 analyzing existing code
 
@@ -1014,12 +1016,73 @@ Block diagram and circuit diagram
 
  ![Screenshot 2025-04-02 210644](https://github.com/user-attachments/assets/9a50fe1b-bcd3-4471-9b42-acb1537ef3dd)
 
-
+ ![Screenshot 2025-04-04 165918](https://github.com/user-attachments/assets/1ec9b008-e537-4897-9b7b-b9092c9a71d6)
 
 </details>
 
 
+#### STEP3 Implementation
 
+<details>
 
-   
+ Follow thes steps :
 
+ * First create a folder in VSDSquadron_FM named as [uart_tx_sense](https://github.com/thesourcerer8/VSDSquadron_FM/tree/main/uart_tx_sense)
+
+ * Then open terminal and put these commands
+
+ `cd`
+
+ `cd VSDSquadron_FM`
+
+ `cd uart_tx_sense`
+
+ `lsusb`
+
+ `make clean`
+
+ `make build`
+
+ `sudo make flash`
+
+* like This:
+
+![Screenshot 2025-04-02 224015](https://github.com/user-attachments/assets/70f20054-4551-4e7d-919a-062250dfb68c)
+
+![Screenshot 2025-04-02 224030](https://github.com/user-attachments/assets/1fba2938-6c20-4c0d-9e06-34901d569a2c)
+
+![Screenshot 2025-04-02 224432](https://github.com/user-attachments/assets/59893930-a706-4b5f-8395-238f890d77e4)
+
+![Screenshot 2025-04-04 154714](https://github.com/user-attachments/assets/3fa84a22-7f19-4005-a3e6-ed83841913cc)  
+
+ </details>
+
+ #### STEP4 Testing and Verification
+
+<details>
+
+* Instal PUtty by this [link](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+
+* make sure you know your communication number [in my case it was COM3]
+
+* Then check if the `D's are showing up
+
+* Like this :-
+
+![Screenshot 2025-04-04 161015](https://github.com/user-attachments/assets/e23abf85-362f-4ac4-aca3-8c1a64ac18e4)
+
+https://github.com/user-attachments/assets/fc8e212b-21b1-42a8-b065-d60e6017b65c
+
+</details>
+
+#### STEP5 Documenting
+
+Block and Circuit Disgram
+
+<details>
+
+![Screenshot 2025-04-02 210644](https://github.com/user-attachments/assets/06022be0-cdf5-4db0-a3e8-f3787d2e2c98)
+
+![Screenshot 2025-04-04 165918](https://github.com/user-attachments/assets/4121d2a6-030d-49aa-b7b2-60e4c97d0fc9)
+
+</details>
