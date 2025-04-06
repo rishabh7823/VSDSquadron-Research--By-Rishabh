@@ -876,7 +876,7 @@ If still IDLE, it ensures txbit stays HIGH (UART idle state).
 
  Hardware setup
 
- * Refer to the [Datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf) for board details.
+ * Refer to the [Datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf) and [This](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/uart_tx) for board details.
  * Ensure that you have connected the USB
  * Then make the folder named as uart_tx
  * Then put these commands
