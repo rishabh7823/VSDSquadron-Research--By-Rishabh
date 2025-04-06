@@ -1086,3 +1086,51 @@ Block and Circuit Disgram
 ![Screenshot 2025-04-04 165918](https://github.com/user-attachments/assets/4121d2a6-030d-49aa-b7b2-60e4c97d0fc9)
 
 </details>
+
+
+## TASK5 
+
+### Project Themes:
+
+Real-Time Sensor Data Acquisition and Transmission System: This theme focuses on developing systems that interface with various sensors to collect data, process it using the FPGA, and transmit the information to external devices through communication protocols like UART.​
+
+FPGA-Based Digital Oscilloscope: This theme involves designing a digital oscilloscope utilizing the FPGA to sample input signals, process the data, and display waveforms on a screen, enabling real-time signal analysis.
+
+### Objectives:
+
+Conduct comprehensive research on the chosen theme.​
+
+Formulate a detailed project proposal outlining the system's functionality, required components, and implementation strategy.
+
+#### Step 1 Literature Review
+
+<details> 
+
+By doing some extensive research i found out about this [PROJECT](https://www.circuits-diy.com/ultrasonic-sensor-with-buzzer-using-arduino/).
+
+</details>
+
+#### Step 2 Define System Requirements:
+
+<details>
+
+In this project we need these components:
+
+Hardware: Buzzer , HC-SR04 ultrasonic sensor or simmilar , and some wire's 
+
+Software: Docklight , PUtty
+
+</details>
+
+#### Step 3 Design System Architecture:
+
+<details>
+
+ Block diagram:
+
+ ![Screenshot 2025-04-06 172505](https://github.com/user-attachments/assets/97f9fa96-384d-41f1-ab1a-885c8d2380a0)
+
+ Note : there is another board in behalf of FGMA mini board
+
+ 
+</details>
