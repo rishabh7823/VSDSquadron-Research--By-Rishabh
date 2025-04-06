@@ -1116,7 +1116,7 @@ Block diagram and circuit diagram
 
  Follow thes steps :
 
- * First create a folder in VSDSquadron_FM named as [uart_tx_sense](https://github.com/thesourcerer8/VSDSquadron_FM/tree/main/uart_tx_sense)
+ * First create a folder in VSDSquadron_FM named as [uart_tx_sense](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/uart_tx_sense)
 
  * Then open terminal and put these commands
 
@@ -1205,7 +1205,7 @@ By doing some extensive research i found out about this [PROJECT](https://www.ci
 
 In this project we need these components:
 
-Hardware: Buzzer , HC-SR04 ultrasonic sensor or simmilar , and some wire's 
+Hardware: Buzzer , HC-SR04 ultrasonic sensor or simmilar , and some jumper wire's , BreadBoard
 
 Software: Docklight , PUtty
 
