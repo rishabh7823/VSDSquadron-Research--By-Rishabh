@@ -876,7 +876,7 @@ If still IDLE, it ensures txbit stays HIGH (UART idle state).
 
  Hardware setup
 
- * Refer to the [Datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf) and [This](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/uart_tx) for board details.
+ * Refer to the [Datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf) and these [files](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/uart_tx) for board details.
  * Ensure that you have connected the USB
  * Then make the folder named as uart_tx
  * Then put these commands
@@ -1221,5 +1221,8 @@ Software: Docklight , PUtty
 
  Note : there is another board in behalf of FGMA mini board
 
- 
+ Circuit diagram:
+
+ ![image](https://github.com/user-attachments/assets/cdb7c29f-f612-44b1-bcdf-959d7db7dd58)
+
 </details>
