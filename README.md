@@ -35,13 +35,9 @@
 
 Download VSDSquadron FPGA Mini (FM) Software on your laptop as given in datasheet
 
- You should see a terminal window as shown in below
-
+You should see a terminal window as shown in below
 
 ![Screenshot 2025-03-22 232318](https://github.com/user-attachments/assets/f8b2a65d-a4a8-4f3c-a7bc-760b5166fd82)
-
-
-
 
 run the commands as given below 
 
@@ -602,8 +598,8 @@ Developing a UART transmitter module capable of sending serial data from the FPG
 #### STEP1 analyzing the Existing Code
 
 <details>
-
-##### UART_TRX.V - 
+  
+UART_TRX.V
 
  1. File Inclusion
 
@@ -766,18 +762,464 @@ Developing a UART transmitter module capable of sending serial data from the FPG
     The module returns to IDLE mode.
 
 
+TOP.V
+
+1. Module Overview
+
+This module has:
+
+Inputs:
+
+   ```clk```: Clock signal.
+
+   ```txbyte```: 8-bit data to be transmitted.
+
+   ```senddata```: Signal to initiate transmission.
+
+Outputs:
+
+   ```txdone```: Indicates transmission completion.
+
+   ```tx```: UART output signal (serial data line).
+
+2. Parameter Definitions
+
+   These define different states of the UART transmitter:
+
+   ```STATE_IDLE``` (0) → Waiting for data.
+
+   ```STATE_STARTTX``` (1) → Sending start bit (low signal).
+
+   ```STATE_TXING``` (2) → Sending 8 data bits.
+
+   ```STATE_TXDONE``` (3) → Sending stop bit and marking transmission as complete.
+
+3. State Variables
+
+   ```state```: Stores the current state of the UART module.
+
+   ```buf_tx```: Holds the byte being transmitted.
+
+   ```bits_sent```: Counts how many bits have been sent.
+
+   ```txbit```: Holds the TX pin state (idle is high).
+
+   ```txdone```: Set to 1 when transmission is finished.
+
+4.  TX Wire Connection
+
+  The output signal ```tx``` is directly assigned to ```txbit```, which is modified in the always block.
+
+5.  Always Block (Sequential Logic)
+
+   The UART transmission operates on the rising edge of the clock.
+
+6. Start Condition
+
+   If ```senddata``` is 1 and the module is IDLE, it:
+
+   Moves to ```STATE_STARTTX```.
+
+   Loads ```txbyte``` into ```buf_tx```.
+
+Clears txdone.
+
+If still IDLE, it ensures txbit stays HIGH (UART idle state).
+
+7. Start Bit Transmission
+
+   The start bit (0) is sent to the ```tx``` line.
+
+   The module moves to ```STATE_TXING```.
+
+8. Sending Data Bits
+
+   The LSB (Least Significant Bit) is sent first.
+
+   The buffer ```buf_tx``` is shifted right so the next bit moves to ```buf_tx[0]```.
+
+   ```bits_sent``` is incremented.
+
+9. Stop Bit and Transmission Completion
+
+    After 8 data bits, a stop bit (HIGH 1) is sent.
+
+    The bit counter resets.
+
+    the module moves to ```STATE_TXDONE```.
+
+10. Mark Transmission as Done
+
+    The ```txdone``` flag is set to 1, indicating that the transmission has finished.
+
+    The module returns to IDLE mode.
+
+</details>
+
+#### STEP2 Designing Documentation
+
+<details>
+
+ block diagram detailing the UART transmitter module.
+
+ ![Screenshot 2025-03-31 122928](https://github.com/user-attachments/assets/eff6a7a2-3876-42d0-9e91-4460f7d8f670)
+
+ circuit diagram illustrating the FPGA's UART TX pin connection to the receiving device.
+
+![Screenshot 2025-03-31 121139](https://github.com/user-attachments/assets/03f4d68f-b6e7-44e5-aaee-51879f9b919a)
+
+</details>
+
+#### STEP3 Implementation
+
+<details>
+
+ Hardware setup
+
+ * Refer to the [Datasheet](https://www.vlsisystemdesign.com/wp-content/uploads/2025/01/VSDSquadronFMDatasheet.pdf) for board details.
+ * Ensure that you have connected the USB
+ * Then make the folder named as uart_tx
+ * Then put these commands
+
+   ``` cd ```
+   
+   ``` cd VSDSquadron_FM ```
+   
+   ``` cd uart_tx ```
+   
+   ``` lsusb ```
+   
+   ``` make clean ```
+   
+   ``` make build ```
+   
+   ``` sudo make flash ```
+
+* Like this
+
+![Screenshot 2025-03-29 140217](https://github.com/user-attachments/assets/9dc5b566-fbdf-4377-bfba-171232818a21)
+
+![Screenshot 2025-03-29 140233](https://github.com/user-attachments/assets/08a6cfb3-b483-48d4-b64d-61371b87b563)
+
+![Screenshot 2025-03-29 140246](https://github.com/user-attachments/assets/a9db10c5-4776-48bb-a077-12f4f11e6fe9)
+
+</details>
+
+#### STEP4 Testing and Verification
+
+<details>
+
+ * Instal PUtty by this [link](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+ * make sure you know your communication number [in my case it was COM3]
+ * Then check if the `D's are showing up
+ * Like this :-
+
+   ![Screenshot 2025-03-29 141226](https://github.com/user-attachments/assets/4f9300e5-149c-4bca-a221-a5ddeb473c56)
+
+  https://github.com/user-attachments/assets/c91b4c03-955f-43ac-bed0-3ac1a3e8861b
+
+  https://github.com/user-attachments/assets/c3d32de6-4399-4993-8841-e48542625c2f
+
+  ![Screenshot 2025-03-31 130233](https://github.com/user-attachments/assets/ab74fef8-5442-4ff3-bddc-0b790a179b0a)
+
+  ![Screenshot 2025-03-31 130242](https://github.com/user-attachments/assets/ddd43daa-6f06-4867-a479-0f368a3bfa9c)
+
+  ![Screenshot 2025-03-31 130252](https://github.com/user-attachments/assets/c89a30a2-7594-468c-903b-feff03621a3c)
+
+  ![Screenshot 2025-03-31 130259](https://github.com/user-attachments/assets/063dbf65-97c1-478a-80f3-09d20bcc1ab1)
+
+</details>
+
+#### STEP5 Documenting
+
+<details>
+
+ Block diagram -
+
+ ![Screenshot 2025-03-31 121139](https://github.com/user-attachments/assets/11a23414-4aec-4ece-a985-bb43db4fb690)
+
+ Circuit diagram -
+
+ ![Screenshot 2025-03-31 122928](https://github.com/user-attachments/assets/cd73bd81-1f40-48fd-b7ae-997a37003217)
+
 </details>
 
 
+## Task 4
+
+### Objective: 
+
+Implement a UART transmitter that sends data based on sensor inputs, enabling the FPGA to communicate real-time sensor data to an external device.
+
+#### STEP1 analyzing existing code
+
+<details>
+
+TOP.V
+
+1. File Inclusion
+
+   This includes an external Verilog file ```uart_trx.v```, which likely contains the UART transmitter ```(uart_tx_8n1)``` and possibly a UART receiver.
+
+2. Module Declaration
+
+   LEDs (led_red, led_blue, led_green) are used to indicate status based on received UART data.
+
+   ```uarttx``` (UART Transmit Pin) sends data to an external device.
+
+   ```uartrx```(UART Receive Pin) receives data, used to control LEDs.
+
+   ```hw_clk``` (Hardware Clock Input) is the system clock.
+
+3. Internal Signals
+
+   ```int_osc```: Internal oscillator signal.
+
+   ```frequency_counter_i```: A 28-bit counter used for timing operations.
+
+4. Generating 9600 Hz Clock from 12 MHz
+
+   ```clk_9600```: A clock signal for UART transmission.
+
+   ```cntr_9600```: A counter used to divide the 12 MHz system clock.
+
+   ```period_9600``` = 625: Defines how often the clock toggles to achieve 9600 baud rate.
+
+5. UART Transmitter
+
+   Instantiates the ```uart_tx_8n1``` module, which transmits ASCII character "D".
+
+   ```senddata```(frequency_counter_i[24]) triggers data transmission periodically.
+
+6. Internal Oscillator
+
+   ```SB_HFOSC``` is an FPGA primitive used for generating an internal high-frequency oscillator clock.
+
+   ```CLKHF_DIV``` ("0b10") sets the frequency division.
+
+7. Counter for Clock Division
+
+   Increments ```frequency_counter_i``` on every clock pulse.
+
+   Generates a 9600 Hz clock by toggling ```clk_9600``` every 625 cycles.
+
+8. RGB LED Control (Using UART RX Data)
+
+   RGB LEDs are controlled directly by the received UART signal ```(uartrx)```.
+
+   This means when data is received via UART, the LEDs will turn on/off accordingly.
+
+   ```SB_RGBA_DRV```is an FPGA primitive for driving RGB LEDs.
+
+9. LED Current Configuration
+
+    Sets the current drive strength for each LED.
+
+UART_TRX,V
+
+1. Module I/O
+
+   ```clk``` → Input clock for timing UART transmission.
+
+   ```txbyte``` → The 8-bit data to be transmitted.
+
+   ```senddata``` → Signal to start transmission.
+
+   ```txdone``` → Output signal indicating the transmission is complete.
+
+   ```tx ```→ UART TX output (connected to the receiving device's RX pin).
+
+2. UART 8N1 Transmission Format
+
+   Start Bit (0): Signals the beginning of data transmission.
+
+   8 Data Bits: Actual data being sent (LSB first).
+
+   Stop Bit (1): Marks the end of transmission.
+
+3. Parameters: UART State Machine
+
+   ```STATE_IDLE``` (0) → UART is idle, waiting for data.
+
+   ```STATE_STARTTX``` (1) → Sends the start bit (0).
+
+   ```STATE_TXING``` (2) → Sends 8 data bits (LSB first).
+
+   ```STATE_TXDONE``` (3) → Sends stop bit (1), then returns to idle.
+
+4. Registers (State Variables)
+
+   ```state``` → Holds the current state of the UART FSM.
+
+   ```buf_tx``` → Stores txbyte temporarily while transmitting.
+
+   ```bits_sent``` → Tracks the number of bits sent.
+
+   ```txbit``` → Stores the TX line value (default = 1, idle).
+
+   `txdon`e → Indicates transmission completion.
+
+5. TX Line Output
+
+   Assigns the `txbit` value to tx, ensuring it drives the TX pin.
+
+6. IDLE STATE: Waiting for Data
+
+   If senddata == 1, the module loads txbyte into `buf_tx` and moves to `STATE_STARTTX`.
+
+   Otherwise, TX line remains high (1) (idle state).
+
+7. `START BIT`: Send Low (0)
+
+   The TX line is pulled low (0) to indicate the start of transmission.
+
+   Moves to `STATE_TXING` to begin sending data bits.
+
+8. TRANSMIT 8 DATA BITS
+
+   TX line is set to the LSB `(buf_tx[0])`.
+
+   Right shift (>>1) the buffer to get the next bit.
+
+   Increment `bits_sent` until all 8 bits are transmitted.
+
+9. STOP BIT: Send High (1)
+
+    Sends stop bit (1) to indicate end of transmission.
+
+    Resets `bits_sent` to 0 and moves to `STATE_TXDONE`.
+
+10. TX DONE & RETURN TO IDLE
+
+    `txdone` is set to 1 to indicate transmission completion.
+
+    Returns to `STATE_IDLE` to wait for new data.
+ 
+</details>
+
+#### STEP2 Design Documentation:
+
+Block diagram and circuit diagram 
+
+<details>
+
+ ![Screenshot 2025-04-02 210644](https://github.com/user-attachments/assets/9a50fe1b-bcd3-4471-9b42-acb1537ef3dd)
+
+ ![Screenshot 2025-04-04 165918](https://github.com/user-attachments/assets/1ec9b008-e537-4897-9b7b-b9092c9a71d6)
+
+</details>
 
 
+#### STEP3 Implementation
+
+<details>
+
+ Follow thes steps :
+
+ * First create a folder in VSDSquadron_FM named as [uart_tx_sense](https://github.com/thesourcerer8/VSDSquadron_FM/tree/main/uart_tx_sense)
+
+ * Then open terminal and put these commands
+
+ `cd`
+
+ `cd VSDSquadron_FM`
+
+ `cd uart_tx_sense`
+
+ `lsusb`
+
+ `make clean`
+
+ `make build`
+
+ `sudo make flash`
+
+* like This:
+
+![Screenshot 2025-04-02 224015](https://github.com/user-attachments/assets/70f20054-4551-4e7d-919a-062250dfb68c)
+
+![Screenshot 2025-04-02 224030](https://github.com/user-attachments/assets/1fba2938-6c20-4c0d-9e06-34901d569a2c)
+
+![Screenshot 2025-04-02 224432](https://github.com/user-attachments/assets/59893930-a706-4b5f-8395-238f890d77e4)
+
+![Screenshot 2025-04-04 154714](https://github.com/user-attachments/assets/3fa84a22-7f19-4005-a3e6-ed83841913cc)  
+
+ </details>
+
+ #### STEP4 Testing and Verification
+
+<details>
+
+* Instal PUtty by this [link](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+
+* make sure you know your communication number [in my case it was COM3]
+
+* Then check if the `D's are showing up
+
+* Like this :-
+
+![Screenshot 2025-04-04 161015](https://github.com/user-attachments/assets/e23abf85-362f-4ac4-aca3-8c1a64ac18e4)
+
+https://github.com/user-attachments/assets/fc8e212b-21b1-42a8-b065-d60e6017b65c
+
+</details>
+
+#### STEP5 Documenting
+
+Block and Circuit Disgram
+
+<details>
+
+![Screenshot 2025-04-02 210644](https://github.com/user-attachments/assets/06022be0-cdf5-4db0-a3e8-f3787d2e2c98)
+
+![Screenshot 2025-04-04 165918](https://github.com/user-attachments/assets/4121d2a6-030d-49aa-b7b2-60e4c97d0fc9)
+
+</details>
 
 
+## TASK5 
 
+### Project Themes:
 
+Real-Time Sensor Data Acquisition and Transmission System: This theme focuses on developing systems that interface with various sensors to collect data, process it using the FPGA, and transmit the information to external devices through communication protocols like UART.​
 
+FPGA-Based Digital Oscilloscope: This theme involves designing a digital oscilloscope utilizing the FPGA to sample input signals, process the data, and display waveforms on a screen, enabling real-time signal analysis.
 
+### Objectives:
 
+Conduct comprehensive research on the chosen theme.
 
-   
+Formulate a detailed project proposal outlining the system's functionality, required components, and implementation strategy.
 
+#### Step 1 Literature Review
+
+<details> 
+
+By doing some extensive research i found out about this [PROJECT](https://www.circuits-diy.com/ultrasonic-sensor-with-buzzer-using-arduino/).
+
+</details>
+
+#### Step 2 Define System Requirements:
+
+<details>
+
+In this project we need these components:
+
+Hardware: Buzzer , HC-SR04 ultrasonic sensor or simmilar , and some wire's 
+
+Software: Docklight , PUtty
+
+</details>
+
+#### Step 3 Design System Architecture:
+
+<details>
+
+ Block diagram:
+
+ ![Screenshot 2025-04-06 172505](https://github.com/user-attachments/assets/97f9fa96-384d-41f1-ab1a-885c8d2380a0)
+
+ Note : there is another board in behalf of FGMA mini board
+
+ 
+</details>
