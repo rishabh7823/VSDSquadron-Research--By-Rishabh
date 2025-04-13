@@ -1177,7 +1177,7 @@ Block and Circuit Disgram
 </details>
 
 
-## TASK5 
+## TASK 5 
 
 ### Project Themes:
 
@@ -1225,4 +1225,56 @@ Software: Docklight , PUtty
 
  ![image](https://github.com/user-attachments/assets/cdb7c29f-f612-44b1-bcdf-959d7db7dd58)
 
+</details>
+
+## TASK 6
+
+Step 1 Develop FPGA Modules:
+
+<details>
+
+ You can access the verilog code [here](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/Task6)
+ 
+</details>
+
+Step 2 Simulate and Test Modules:
+
+<details>
+
+ 1. Make a folder in VSDSquadron_FM
+ 2. Then add this [files](https://github.com/rishabh7823/VSDSquadron-Research--By-Rishabh/tree/main/Task6) inside it
+ 3. Then put this commands in terminal:
+
+    `cd`
+
+    `cd VSDSquadron_FM`
+
+    `cd Task6`
+
+    `lsusb`
+
+    `make clean`
+
+    `make build`
+
+    `sudo make flash`
+
+![Screenshot 2025-04-13 180653](https://github.com/user-attachments/assets/1be22fb4-af64-4d2e-aaf7-85c0549ded71)
+
+![Screenshot 2025-04-13 184249](https://github.com/user-attachments/assets/e2317f0b-9080-4311-a891-28f650f4934a)
+
+Step 3 Integrate and Test Hardware:
+
+ <details>
+
+1. Assemble the components like this:
+
+   ![Screenshot 2025-04-13 205154](https://github.com/user-attachments/assets/ec2f068a-d6d4-4f0e-8fc1-b8fffc15536d)
+
+2. In hardware:
+
+https://github.com/user-attachments/assets/8a82671c-a4a0-45ec-86e1-d2bcfc98c102
+
+![Screenshot 2025-04-13 211832](https://github.com/user-attachments/assets/2db06859-792e-4bb5-83d2-508a3ea6f12b)
+						
 </details>
