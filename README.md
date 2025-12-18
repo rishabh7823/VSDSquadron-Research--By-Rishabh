@@ -1176,8 +1176,81 @@ Block and Circuit Disgram
 
 </details>
 
+## TASK 5 (Implementation of the [RISC-V core](https://en.wikipedia.org/wiki/RISC-V) in [VSDSquadron FPGA](https://www.vlsisystemdesign.com/vsdsquadronfm/) Mini)
 
-## TASK 5 
+TL-Verilog code cannot be loaded directly onto an FPGA. It must first be translated into standard Verilog, and this conversion is performed using a tool known as Sandpiper SaaS.
+
+### Installation of Sandpiper-SAAS
+
+<details>
+TL-Verilog cannot be programmed straight onto an FPGA. Before deployment, it needs to be converted into standard Verilog, and this translation is handled by a software tool called Sandpiper SaaS
+
+There are 2 ways
+
+Go to ubunto>Terminal and type :
+```pip3 install sandpiper-saas```
+
+The easiest way is that YOu can open ubuntu then open web browser(fire fox) then go to this [web site](https://pypi.org/project/sandpiper-saas/#files) and just click on install then it wil be ready 
+
+> [!NOTE]
+> 1. Check where it is getting downloaded
+
+</details>
+
+### Implementing the RISC-V core in the VSDSquadronFM FPGA
+
+<details>
+
+1. Clone this repository
+   
+    ```git clone https://github.com/Ahtesham18112011/RISCV_Implementation.git```
+   
+3. Go to codes
+
+   ```cd codes```
+
+4. Then put
+
+   ```make build```
+
+> [!NOTE]
+> Make the VSDSquadron_FM is conected
+> If you wanted to check put ```lsusb```
+
+5. Then type this
+
+   ```sudo make flash```
+   
+</details>
+
+### Making the Hardware and checking the output
+
+<details>
+
+we need 8-10 Leds and about 10-15 jumber wires
+
+Then connect it as shown
+
+|FPGA pins | External connections |
+|------------------|-----------------
+|42    | LED 1    | 
+| 43    | LED 2     | 
+|44    |  LED 3   | 
+| 45    | LED 4| 
+|46    |  LED 5 | 
+| 47    |  LED 6  | 
+|48    |  LED  7 | 
+| 2    |  Clock   | 
+| 3    |  Reset  | 
+| 4   |  LED 8  | 
+
+The output will be -
+
+![WhatsApp Image 2025-12-18 at 5 26 39 PM](https://github.com/user-attachments/assets/b8321fdd-0593-49a5-96f7-019f7a3c1445)
+
+</details>
+
+## TASK 6 (My Project) 
 
 ### Project Themes:
 
@@ -1227,7 +1300,7 @@ Software: Docklight , PUtty
 
 </details>
 
-## TASK 6
+## Task 6 (My Project-2)
 
 Step 1 Develop FPGA Modules:
 
