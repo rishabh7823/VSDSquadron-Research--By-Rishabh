@@ -1187,10 +1187,11 @@ TL-Verilog cannot be programmed straight onto an FPGA. Before deployment, it nee
 
 There are 2 ways
 
-Go to ubunto>Terminal and type :
+1. Go to ubunto>Terminal and type :
+   
 ```pip3 install sandpiper-saas```
 
-The easiest way is that YOu can open ubuntu then open web browser(fire fox) then go to this [web site](https://pypi.org/project/sandpiper-saas/#files) and just click on install then it wil be ready 
+2. The easiest way is that YOu can open ubuntu then open web browser(fire fox) then go to this [web site](https://pypi.org/project/sandpiper-saas/#files) and just click on install then it wil be ready 
 
 > [!NOTE]
 > 1. Check where it is getting downloaded
@@ -1247,6 +1248,8 @@ Then connect it as shown
 The output will be -
 
 ![WhatsApp Image 2025-12-18 at 5 26 39 PM](https://github.com/user-attachments/assets/b8321fdd-0593-49a5-96f7-019f7a3c1445)
+
+https://github.com/user-attachments/assets/a98b03d8-70c7-4524-ab9e-afb4fbea7287
 
 </details>
 
